@@ -25,6 +25,7 @@ def make_scoring_df(scoring_matrix_list):
 
     return pd.DataFrame(scoring_matrix_list, columns=headers, index=headers)
 
+
 def generate_alignment_matrix(seq1, seq2, gap_opening, gap_extension, scoring_matrix):
 
     alignment_matrix = np.zeros((len(seq1), len(seq2)))
@@ -42,6 +43,7 @@ def generate_alignment_matrix(seq1, seq2, gap_opening, gap_extension, scoring_ma
 
     return(alignment_matrix)
 
+
 def find_max_gap(scores, gap_opening, gap_extension):
 
     max = 0
@@ -56,6 +58,7 @@ def find_max_gap(scores, gap_opening, gap_extension):
 
     return max
 
+
 def generate_traceback(alignment_matrix, seq1, seq2):
 
     alignment1 = ""
@@ -67,7 +70,8 @@ def generate_traceback(alignment_matrix, seq1, seq2):
     alignment1 += seq1[i]
     alignment2 += seq2[i]
 
-    while
+    while max != 0:
+        max
 
 
 
