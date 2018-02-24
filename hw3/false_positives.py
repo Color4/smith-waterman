@@ -58,7 +58,7 @@ def pick_best_gap():
 
 def pick_best_scoring():
 
-    pos_list = glob.glob("scoring/*pos_output.txt")
+    pos_list = glob.glob("*optimized")
     with open("scoring_matrix_output.txt", "w") as o:
         for file in pos_list:
 
