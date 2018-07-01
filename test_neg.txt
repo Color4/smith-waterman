@@ -1,0 +1,10 @@
+sequences/prot-0018.fa sequences/prot-0198.fa
+sequences/prot-0035.fa sequences/prot-0071.fa
+sequences/prot-0056.fa sequences/prot-0826.fa
+sequences/prot-0075.fa sequences/prot-0561.fa
+sequences/prot-0093.fa sequences/prot-0091.fa
+sequences/prot-0110.fa sequences/prot-0613.fa
+sequences/prot-0131.fa sequences/prot-0547.fa
+sequences/prot-0148.fa sequences/prot-0369.fa
+sequences/prot-0166.fa sequences/prot-0839.fa
+sequences/prot-0186.fa sequences/prot-0014.fa
