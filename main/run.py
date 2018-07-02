@@ -9,7 +9,7 @@ import itertools
 from main.false_positives import calculate_pos_rate, fpr
 from glob import glob
 import matplotlib.pyplot as plt
-
+from main.optimize import optimize
 
 def pick_gap_penalties(positive_pairs, negative_pairs, gap, extension, scoring_matrix):
     """
@@ -79,7 +79,7 @@ def plot_roc(true_positive_rates, false_positive_rates):
     for matrix in false_positive_rates:
 
         # generate line plot of fpr vs tpr for each matrix
-        plt.plot(false_positives[matrix], true_positive_rates, label=str(matrix).replace("../scoring/", ""))
+        plt.plot(false_positives[matrix], true_positive_rates, label=str(matrix))
 
     # plot a square [0, 1] x [0, 1] ROC curve
     plt.legend()
@@ -122,14 +122,17 @@ if __name__ == "__main__":
 
     # pick the matrix with the best average fpr
     false_positives = {'../scoring/PAM250': [0.14000000000000001, 0.28000000000000003, 0.41999999999999998, 0.62, 0.78000000000000003, 0.88, 0.93999999999999995, 0.93999999999999995, 0.97999999999999998, 0.97999999999999998, 1.0], '../scoring/MATIO': [0.14000000000000001, 0.22, 0.38, 0.54000000000000004, 0.73999999999999999, 0.81999999999999995, 0.90000000000000002, 0.90000000000000002, 0.93999999999999995, 0.95999999999999996, 1.0], '../scoring/BLOSUM62': [0.12, 0.32000000000000001, 0.41999999999999998, 0.66000000000000003, 0.80000000000000004, 0.90000000000000002, 0.92000000000000004, 0.93999999999999995, 0.95999999999999996, 1.0, 1.0], '../scoring/PAM100': [0.14000000000000001, 0.29999999999999999, 0.41999999999999998, 0.69999999999999996, 0.73999999999999999, 0.88, 0.93999999999999995, 0.93999999999999995, 0.95999999999999996, 1.0, 1.0], '../scoring/BLOSUM50': [0.12, 0.32000000000000001, 0.35999999999999999, 0.64000000000000001, 0.76000000000000001, 0.88, 0.92000000000000004, 0.93999999999999995, 0.95999999999999996, 1.0, 1.0]}
-    best_matrix = pick_best_scoring(false_positives)
-    print(best_matrix)
+    # best_matrix = pick_best_scoring(false_positives)
+    best_matrix = "../scoring/BLOSUM62"
+
     # given the best average matrix, generate roc for matrix, compare to same matrix normalized by shortest sequence distance
     # normalized = {}
     # normalized[best_matrix] = false_positives[best_matrix]
     # normalized["normalized"] = list(test_scoring_matrix([best_matrix], positive_pairs,
     #                                                     negative_pairs, 1, 3, true_positive_rates, True).values())[0]
+    # print(normalized)
+    #
     # plot_roc([x/100 for x in true_positive_rates], normalized)
 
     # given the best matrix, optimize matrix to produce an ideal matrix for our combination of positive/negative sequences
-    # optimize("../scoring/BLOSUM62", positive_pairs, negative_pairs, 1, 3)
+    optimize("../scoring/BLOSUM62", positive_pairs, negative_pairs, 1, 3)
