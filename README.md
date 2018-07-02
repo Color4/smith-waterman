@@ -1,5 +1,7 @@
 # Smith Waterman Algorithm
 
+[![Build Status](https://travis-ci.org/christacaggiano/hw3.svg?branch=master)](https://travis-ci.org/christacaggiano/hw3)
+
 ## Use
 
 `python main/run.py`
