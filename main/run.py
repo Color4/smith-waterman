@@ -7,7 +7,7 @@
 from main.utils import *
 from main.smith_waterman import align
 import itertools
-from main.false_positives import calculate_pos_rate
+from main.false_positives import calculate_pos_rate, fpr, tpr
 from main.optimize import optimize
 
 from glob import glob
@@ -22,9 +22,10 @@ def pick_gap_penalties(positive_pairs, negative_pairs, gap, extension, scoring_m
 
     for gap, extension in penalties:
 
-        fpr = calculate_pos_rate(positive_pairs, negative_pairs, gap, extension, blosum50, 70, False, fpr)
-        if fpr < best_fpr[0]:
-            best_fpr = fpr, (gap, extension)
+        calc_fpr = calculate_pos_rate(positive_pairs, negative_pairs, gap, extension, blosum50, 70, False, fpr)
+        print(calc_fpr, gap, extension)
+        if calc_fpr < best_fpr[0]:
+            best_fpr = calc_fpr, (gap, extension)
 
     return best_fpr[1]
 
@@ -63,14 +64,14 @@ def pick_best_scoring(false_positive_rates):
 
 if __name__ == "__main__":
 
-    positive_pairs = read_sequence_pairs("../test_pos.txt")
-    negative_pairs = read_sequence_pairs("../test_neg.txt")
+    positive_pairs = read_sequence_pairs("../test_neg.txt")
+    negative_pairs = read_sequence_pairs("../test_pos.txt")
 
-    # gap, extension = pick_gap_penalties(positive_pairs, negative_pairs, 20, 5, "../scoring/BLOSUM50")
-
-    scoring_matrices = glob("../scoring/*")
-    true_positive_rates = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-
+    gap, extension = pick_gap_penalties(positive_pairs, negative_pairs, 20, 5, "../scoring/BLOSUM50")
+    #
+    # scoring_matrices = glob("../scoring/*")
+    # true_positive_rates = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    #
     # false_positives = test_scoring_matrix(scoring_matrices, positive_pairs, negative_pairs, 1, 3, true_positive_rates, False)
     # plot_roc([x/100 for x in true_positive_rates], false_positives)
     #
@@ -83,4 +84,4 @@ if __name__ == "__main__":
     #                                                     negative_pairs, 1, 3, true_positive_rates, True).values())[0]
     # plot_roc([x/100 for x in true_positive_rates], normalized)
 
-    optimize("../scoring/BLOSUM62", positive_pairs, negative_pairs, 1, 3)
+    # optimize("../scoring/BLOSUM62", positive_pairs, negative_pairs, 1, 3)

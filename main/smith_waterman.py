@@ -23,7 +23,6 @@ def align(seq1, seq2, gap_opening, gap_extension, scoring_matrix):
             left = find_max_gap(alignment_matrix[:i, j-1], gap_opening, gap_extension)  # find leftmost value
             above = find_max_gap(alignment_matrix[i-1, :j], gap_opening, gap_extension)  # find above value
 
-            print(scoring_matrix[seq1[i]][seq2[j]])
             diag = int(scoring_matrix[seq1[i]][seq2[j]]) + int(alignment_matrix[i-1, j-1]) # find diagonal
 
             max_score = max(left, above, diag, 0)  # pick the max of the 3 previous options, or 0

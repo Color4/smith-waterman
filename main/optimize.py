@@ -1,5 +1,5 @@
 
-from main.false_positives import calculate_pos_rate
+from main.false_positives import calculate_pos_rate, tpr
 from scipy.optimize import minimize
 from main.utils import read_scoring_matrix
 import pandas as pd
@@ -10,17 +10,16 @@ def summed_tpr(matrix, positives, negatives, gap, extension):
 
     matrix = np.reshape(matrix, (24, 24))
     names = ['A', 'R', 'N', 'D', 'C', 'Q', 'E', 'G', 'H', 'I', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V', 'B', 'Z', 'X', '*']
-    matrix = pd.DataFrame(data=matrix, columns=names)
-    # matrix.set_index(matrix)
+    matrix = pd.DataFrame(data=matrix, columns=names, index=names)
 
-    # print(matrix)
+    print("tpr")
 
-    tpr = 0
+    summed_tpr = 0
     for rate in [0, 10, 20]:
         # print(matrix)
-        tpr += calculate_pos_rate(positives, negatives, gap, extension, matrix, rate, False, tpr)
+        summed_tpr += calculate_pos_rate(positives, negatives, gap, extension, matrix, rate, False, tpr)
 
-    return -tpr
+    return -summed_tpr
 
 
 def optimize(matrix, positive_pairs, negative_pairs, gap, extension):
