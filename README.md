@@ -105,7 +105,12 @@ seq2: ----------TTTCACA------------
 
 Would have large gap penalties attached to their alignment. This may be unfair, because in reality, the alignment is quite good.
 
-Using the BLOSUM62 matrix and penalties of 17, 4, I tried a simple normalization.
+Using the BLOSUM62 matrix and penalties of 17, 4, I tried a simple normalization. I found that this did improve my sensitivity/specificity trade off, suggesting that in the future, normalization could help yield less biased results.
+
+
+![image5][image5]
+
+
 
 ### Optimization
 
@@ -130,3 +135,5 @@ The argument that my optimized scoring matrix would be valuable to the greater b
 [image2]: https://raw.githubusercontent.com/christacaggiano/images/master/gap_opening2.png "Image 2"
 
 [image3]: https://raw.githubusercontent.com/christacaggiano/images/master/3d.png "Image 3"
+
+[image5]: https://raw.githubusercontent.com/christacaggiano/images/master/normalize.png "Image 5"
