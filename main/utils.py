@@ -49,6 +49,16 @@ def make_scoring_df(scoring_matrix_list):
 
 
 def generate_alignment(pair, gap, extension, matrix, normalize):
+    """
+    takes two sequences, a gap/extension penalty, and a scoring matrix, and generates alignment
+    helper function to abstract away from smith_waterman.py in other parts of the code
+    :param pair: sequence pair
+    :param gap: gap penalty
+    :param extension: gap extension penalty
+    :param matrix: scoring matrix
+    :param normalize: whether the alignment score should be normalized by the shortest sequence
+    :return: alignments, and the score, normalized if applicable
+    """
 
     align1, align2, score = align(pair[0], pair[1], gap, extension, matrix)
 
