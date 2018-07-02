@@ -124,6 +124,23 @@ Batch gradient descent, in general, works by predicting a scoring matrix, and as
 
 However, a major drawback to this algorithm is that it is very time intensive. It also does not address the constraint that the matrix must be symmetric.
 
+In five iterations for the MATIO and BLOSUM62 matrix, the algorithm did not converge.
+```
+tpr
+-0.0
+tpr
+-0.0
+tpr
+-0.0
+tpr
+-0.0
+tpr
+-0.0
+tpr
+-0.0
+tpr
+```
+
 The argument that my optimized scoring matrix would be valuable to the greater biology community would only be valid if I could demonstrate that the matrix was generalizable. That is, I would need to support the claim that the changes I learned to the BLOSUM62 improve the ability to create good alignments for all combinations of amino acids, not just my training set. Given that we have a highly curated set of sequences, I do not think that I would be able to substantiate this claim. A scoring matrix should be general purpose, so that biologists across many experiments can yield comparable results.  
 
 
